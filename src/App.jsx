@@ -25,10 +25,6 @@ function App() {
     loadTemplate()
   }, [])
 
-  const handleDownloadAts = () => {
-    window.print()
-  }
-
   const handleDownload = async () => {
     if (!pageRef.current) return
     const rect = pageRef.current.getBoundingClientRect()
@@ -76,11 +72,8 @@ function App() {
           <button type="button" onClick={loadTemplate}>
             Resetar modelo
           </button>
-          <button type="button" className="primary" onClick={handleDownloadAts}>
-            Baixar PDF (ATS)
-          </button>
-          <button type="button" onClick={handleDownload}>
-            Baixar PDF (visual)
+          <button type="button" className="primary" onClick={handleDownload}>
+            Baixar PDF
           </button>
         </div>
       </header>
