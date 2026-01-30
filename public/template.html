@@ -2,48 +2,283 @@
 
 <section class="header">
   <div class="info1">
-    <h1>Bruno</h1>
+    <h1>BRUNO MAÇAHARU YOSIMURA</h1>
+    <p>DESENVOLVEDOR FULL STACK</p>
   </div>
-  <div class="info2"> aaaa</div>
+  <div class="info2">
+    <p>(62) 9 9555-4991</p>
+    <p>brunopuc2015@gmail.com</p>
+    <p>Rua SP.12 setor Perim</p>
+    <p>Goiânia - GO</p>
+  </div>
 </section>
 
-<section>
-  <h2>Resumo</h2>
-  <p>Profissional com X anos de experiência em ...</p>
-</section>
-
-<section>
-  <h2>Experiência</h2>
-  <h3>Empresa — Cargo</h3>
-  <p><em>Jan 2022 – Dez 2024</em></p>
+<section class="content knowledge">
+  <h2>Conhecimentos</h2>
   <ul>
-    <li>Resultados e impacto com métricas.</li>
-    <li>Projeto relevante e tecnologias.</li>
+    <li class="top1">React</li>
+    <li class="top1">Laravel</li>
+    <li class="top1">Ionic</li>
+    <li class="top1">Sass</li>
+    <li class="top1">SQL</li>
+    <li class="top1">API</li>
+    <li class="top1">Git</li>
+    <li class="top2">Node</li>
+    <li class="top2">Express</li>
+    <li class="top2">Angular</li>
+    <li class="top2">PHP</li>
+    <li class="top2">Python</li>
+    <li class="top2">Docker</li>
   </ul>
 </section>
 
-<section>
-  <h2>Educação</h2>
-  <h3>Instituição — Curso</h3>
-  <p><em>2018 – 2021</em></p>
+<section class="content experience">
+  <h2>Experiência profissional</h2>
+  <div class="item">
+    <div class="info1">
+      <h3>Híbrida Inteligência Web - Ileva</h3>
+      <p>Goiânia - GO</p>
+    </div>
+
+    <div class="info2">
+      <h3>Desenvolvedor front-end</h3>
+      <p>2019 - 2025</p>
+    </div>
+
+    <div class="info3">
+      <p>Desenvolvimento e manutenção de interfaces para sites, aplicativos e landing pages. Participação em reuniões para propor melhorias em interface das aplicações</p>
+    </div>
+  
+    <div class="info4">
+      <h3>Tecnologias: </h3>
+      <p>React</p>
+      <p>Ionic</p>
+      <p>Angular</p>
+      <p>MySQL</p>
+      <p>PHP</p>
+      <p>Git</p>
+      <p>Figma/Adobe XD</p>
+    </div>
+
+    <div class="info5">
+      <h3>Conquistas: </h3>
+      <div>
+        <p>Participei da criação do aplicativo Ileva desde o início do projeto, no qual se tornou o foco principal da empresa híbrida.</p>
+        <p>Faço a implementação de novas features no sistema e proponho melhorias nas interfaces da aplicação.</p>
+      </div>
+    </div>
+    <a href="https://google.com">teste</a>
+  </div>
+
+  <div class="item">
+    <div class="info1">
+      <h3>Híbrida Inteligência Web - Ileva</h3>
+      <p>Goiânia - GO</p>
+    </div>
+
+    <div class="info2">
+      <h3>Desenvolvedor front-end</h3>
+      <p>2019 - 2025</p>
+    </div>
+
+    <div class="info3">
+      <p>Desenvolvimento e manutenção de interfaces para sites, aplicativos e landing pages. Participação em reuniões para propor melhorias em interface das aplicações</p>
+    </div>
+  
+    <div class="info4">
+      <h3>Tecnologias: </h3>
+      <p>React</p>
+      <p>Ionic</p>
+      <p>Angular</p>
+      <p>MySQL</p>
+      <p>PHP</p>
+      <p>Git</p>
+      <p>Figma/Adobe XD</p>
+    </div>
+
+    <div class="info5">
+      <h3>Conquistas: </h3>
+      <div>
+        <p>Participei da criação do aplicativo Ileva desde o início do projeto, no qual se tornou o foco principal da empresa híbrida.</p>
+        <p>Faço a implementação de novas features no sistema e proponho melhorias nas interfaces da aplicação.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section>
-  <h2>Habilidades</h2>
-  <p>HTML, CSS, JavaScript, React, Node.js</p>
-</section>
+
 
 
 <style>
-  .page{
+  *{
+    margin: 0;
     padding: 0;
+  }
+  .page{
+    padding: 20px;
   }
 
   .header{
-    background: red;
+    background: #5a568e;
     display: flex;
     align-items: center;
     width: 100%;
+    justify-content: space-between;
+    border-radius: 0;
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 7px;
+    border: 2px solid #3c386a;
+  }
+
+  .header .info1 h1{
+    margin: 0;
+    font-size: 26px;
+  }
+  .header .info1 p{
+    margin: 0;
+    font-size: 14px;
+  }
+  .header .info2 p{
+    margin: 0;
+    font-size: 12px;
+    text-align: right;
+  }
+
+  .content{
+    padding: 25px 10px 10px;
+  }
+  h2{
+    color: #3c386a;
+    font-size: 21px;
+    margin: 0;
+  }
+  .knowledge ul{
+    font-size: 21px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    align-items: center;
+    padding: 0;
+  }
+  .knowledge li{
+    font-size: 20px;
+    list-style: none;
+    margin: 0;
+    background: #5a568e;
+    border: 2px solid #3c386a;
+    color: #fff;
+    padding: 1px 5px 0px;
+    border-radius: 6px;
+    font-weight: bold;
+  }
+  .knowledge .top1{
+    font-size: 17px;
+  }
+  .knowledge .top2{
+    font-size: 14px;
+  }
+  .knowledge li:last-child:after{
+    content: '';
+  }
+
+  .experience{
+    padding: 0 10px 10px;
+  }
+
+  .experience .item{
+    background: #5a568e47;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0 0 10px;
+  }
+
+  .experience .item .info1{
+    background: #5a568e;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 5px 2px;
+    border-radius: 4px;
+  }
+  .experience .item .info1 h3{
+    font-size: 16px;
+  }
+  .experience .item .info1 p{
+    margin: 0;
+    font-weight: bold;
+  }
+
+  .experience .item .info2{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 5px;
+  }
+  .experience .item .info2 h3{
+    color: #3c386a;
+    font-size: 16px;
+  }
+  .experience .item .info2 p{
+    color: #3c386a;
+    font-size: 16px;
+    margin: 0;
+  }
+  
+  .experience .item .info3{
+    background: #fff;
+    padding: 5px;
+    border-radius: 3px;
+    margin: 0 0 10px;
+  }
+  
+  .experience .item .info3 p{
+    margin: 0;
+    font-size: 14px;
+    line-height: 18px;
+    color: #3c386a;
+  }
+
+  .experience .item .info4{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 10px;
+  }
+  .experience .item .info4 h3{
+    color: #3c386a;
+    font-size: 14px;
+  }
+  .experience .item .info4 p{
+    margin: 0;
+    font-size: 14px;
+    line-height: 18px;
+    color: #3c386a;
+  }
+
+  .experience .item .info5{
+    display: flex;
+    gap: 15px;
+  }
+  .experience .item .info5 h3{
+    color: #3c386a;
+    font-size: 14px;
+  }
+  .experience .item .info5 div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .experience .item .info5 div p{
+    margin: 0;
+    font-size: 14px;
+    line-height: 18px;
+    color: #3c386a;
+    background: #fff;
+    padding: 5px;
+    border-radius: 3px;
   }
 
 </style>

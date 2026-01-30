@@ -59,7 +59,7 @@ function App() {
       </header>
 
       <main className="layout">
-        <section className="panel">
+        <section className="panel" style={{ display: 'none' }}>
           <div className="panel-header">
             <h2>HTML do currículo</h2>
             <div className="small">{status}</div>
@@ -72,7 +72,7 @@ function App() {
           />
         </section>
 
-        <section className="preview">
+        <section className="preview" style={{ width: '950px' }}>
           <div className="preview-header">
             <div>Pré-visualização A4</div>
             <div className="small">210 × 297 mm</div>
