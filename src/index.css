@@ -209,6 +209,7 @@ button {
 @media print {
   body {
     background: #fff;
+    margin: 0;
   }
 
   .topbar,
@@ -230,9 +231,11 @@ button {
 
   .page {
     width: 210mm;
-    height: 297mm;
+    height: auto;
+    min-height: 297mm;
     box-shadow: none;
     border-radius: 0;
+    overflow: visible;
   }
 
   @page {
