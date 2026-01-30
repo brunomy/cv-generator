@@ -25,17 +25,37 @@ function App() {
     loadTemplate()
   }, [])
 
-  const handleDownload = () => {
+  const handleDownload = async () => {
     if (!pageRef.current) return
+    const rect = pageRef.current.getBoundingClientRect()
+    const canvasWidth = Math.round(rect.width)
+    const canvasHeight = Math.round(rect.height)
     const options = {
       margin: 0,
       filename: 'curriculo.pdf',
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        width: canvasWidth,
+        height: canvasHeight,
+        windowWidth: canvasWidth,
+        windowHeight: canvasHeight,
+      },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
     }
 
-    html2pdf().set(options).from(pageRef.current).save()
+    const worker = html2pdf().set(options).from(pageRef.current)
+    await worker
+      .toPdf()
+      .get('pdf')
+      .then((pdf) => {
+        while (pdf.getNumberOfPages() > 1) {
+          pdf.deletePage(pdf.getNumberOfPages())
+        }
+      })
+    await worker.save()
   }
 
   return (

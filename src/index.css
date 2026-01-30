@@ -172,6 +172,7 @@ button {
   box-shadow: var(--shadow);
   border-radius: 10px;
   padding: 18mm 16mm;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
