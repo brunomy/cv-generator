@@ -1,10 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
-import html2pdf from 'html2pdf.js'
+import { useEffect, useMemo, useState } from 'react'
 
 function App() {
   const [htmlValue, setHtmlValue] = useState('')
   const [status, setStatus] = useState('Carregando template...')
-  const pageRef = useRef(null)
 
   const loadTemplate = async () => {
     setStatus('Carregando template...')
@@ -25,37 +23,102 @@ function App() {
     loadTemplate()
   }, [])
 
+  const normalizeTemplate = (rawHtml) => {
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(
+      `<!doctype html><html><head></head><body>${rawHtml}</body></html>`,
+      'text/html'
+    )
+
+    const headNodes = []
+    const styleNodes = doc.querySelectorAll('style, link[rel="stylesheet"]')
+    styleNodes.forEach((node) => {
+      headNodes.push(node.outerHTML)
+      node.remove()
+    })
+
+    return {
+      head: headNodes.join('\n'),
+      body: doc.body.innerHTML,
+    }
+  }
+
+  const buildPrintHtml = (normalized) => `<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Currículo</title>
+    ${normalized.head}
+    <style>
+      @page { size: A4; margin: 0; }
+      html, body { margin: 0; padding: 0; }
+      body {
+        color: #111;
+        font-family: Arial, sans-serif;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .page {
+        width: 210mm;
+        height: 297mm;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      ${normalized.body}
+    </div>
+  </body>
+</html>`
+
+  const normalizedTemplate = useMemo(
+    () => normalizeTemplate(htmlValue),
+    [htmlValue]
+  )
+
+  const previewHtml = useMemo(
+    () => buildPrintHtml(normalizedTemplate),
+    [normalizedTemplate]
+  )
+
   const handleDownload = async () => {
-    if (!pageRef.current) return
-    const rect = pageRef.current.getBoundingClientRect()
-    const canvasWidth = Math.round(rect.width)
-    const canvasHeight = Math.round(rect.height)
-    const options = {
-      margin: 0,
-      filename: 'curriculo.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true,
-        width: canvasWidth,
-        height: canvasHeight,
-        windowWidth: canvasWidth,
-        windowHeight: canvasHeight,
-      },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
+    const iframe = document.createElement('iframe')
+    iframe.style.position = 'fixed'
+    iframe.style.right = '0'
+    iframe.style.bottom = '0'
+    iframe.style.width = '0'
+    iframe.style.height = '0'
+    iframe.style.border = '0'
+    iframe.setAttribute('aria-hidden', 'true')
+    document.body.appendChild(iframe)
+
+    const doc = iframe.contentWindow?.document
+    if (!doc) {
+      iframe.remove()
+      return
     }
 
-    const worker = html2pdf().set(options).from(pageRef.current)
-    await worker
-      .toPdf()
-      .get('pdf')
-      .then((pdf) => {
-        while (pdf.getNumberOfPages() > 1) {
-          pdf.deletePage(pdf.getNumberOfPages())
-        }
-      })
-    await worker.save()
+    const normalized = normalizedTemplate
+    doc.open()
+    doc.write(buildPrintHtml(normalized))
+    doc.close()
+
+    const finalize = () => {
+      iframe.contentWindow?.focus()
+      iframe.contentWindow?.print()
+      setTimeout(() => {
+        iframe.remove()
+      }, 200)
+    }
+
+    if (doc.fonts?.ready) {
+      doc.fonts.ready.then(() => setTimeout(finalize, 0))
+      return
+    }
+
+    iframe.onload = () => setTimeout(finalize, 0)
   }
 
   return (
@@ -98,10 +161,10 @@ function App() {
             <div className="small">210 × 297 mm</div>
           </div>
           <div className="page-wrap">
-            <div
-              ref={pageRef}
-              className="page"
-              dangerouslySetInnerHTML={{ __html: htmlValue }}
+            <iframe
+              className="page-frame"
+              title="Prévia A4"
+              srcDoc={previewHtml}
             />
           </div>
         </section>

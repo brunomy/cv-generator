@@ -23,3 +23,8 @@ npm run dev
 - A prévia usa tamanho A4 (210 × 297 mm).
 - A impressão do navegador também funciona se preferir.
 # cv-generator
+
+
+sudo apt update
+sudo apt install poppler-utils
+pdftotext -layout "curriculo.pdf" - | less

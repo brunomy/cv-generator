@@ -164,28 +164,14 @@ button {
   min-height: 640px;
 }
 
-.page {
+.page-frame {
   width: 210mm;
   height: 297mm;
+  border: 0;
+  display: block;
   background: #fff;
-  color: #111;
   box-shadow: var(--shadow);
   border-radius: 10px;
-  padding: 18mm 16mm;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.page p,
-.page li {
-  font-size: 12.5px;
-  line-height: 1.5;
-  margin: 0 0 6px;
-}
-
-.page ul {
-  padding-left: 18px;
-  margin: 0 0 8px;
 }
 
 @media (max-width: 980px) {
@@ -199,9 +185,8 @@ button {
     gap: 16px;
   }
 
-  .page {
+  .page-frame {
     width: 100%;
-    height: auto;
     min-height: 80vh;
   }
 }
@@ -228,7 +213,7 @@ button {
     min-height: auto;
   }
 
-  .page {
+  .page-frame {
     width: 210mm;
     height: 297mm;
     box-shadow: none;
